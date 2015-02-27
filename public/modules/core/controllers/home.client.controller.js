@@ -3,19 +3,6 @@
 
 angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
-	function($scope, Authentication) {
-		// This provides Authentication context.
-		$scope.authentication = Authentication;
-
-
-
-	$('img.home-head').on('click',function(){
-		console.log('gei');
-	});
-
-	}
-]);
-
     function($scope, Authentication) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
@@ -58,30 +45,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             label: "Неделя"
         }];
 
-        var randomScalingFactor = function() {
-            return Math.round(Math.random() * 100)
-        };
-
-
-        /*top3*/
-        var top3 = {
-            labels: ["Жан", "Дани", "Веско"],
-            datasets: [{
-                fillColor: "#7F1637",
-                strokeColor: "#000000",
-                highlightFill: "#047878",
-                highlightStroke: "#000000",
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-            }]
-        }
-
         var ctx = document.getElementById("peoplePerDay").getContext("2d");
         window.myPie = new Chart(ctx).Pie(peoplePerDay);
-
-        var ctx = document.getElementById("top3").getContext("2d");
-        window.myBar = new Chart(ctx).Bar(top3, {
-            responsive: true
-        });
     }
 ]);
 
@@ -90,8 +55,3 @@ $('img.home-head').on('hover', function() {
     $('span.hidden').css('display', 'block');
 });
 
-var Konami = require('konami-js');
-
-new Konami(function(){
-    alert('KONAMI!');
-});
