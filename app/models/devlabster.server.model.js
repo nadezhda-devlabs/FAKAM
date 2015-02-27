@@ -28,6 +28,9 @@ var DevlabsterSchema = new Schema({
 	email: {
 		type: String,
 	},
+	isOnline: {
+		type: Boolean,
+	},
 	created: {
 		type: Date,
 		default: Date.now
