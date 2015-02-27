@@ -2,6 +2,20 @@
 
 
 angular.module('core').controller('HomeController', ['$scope', 'Authentication',
+<<<<<<< HEAD
+	function($scope, Authentication) {
+		// This provides Authentication context.
+		$scope.authentication = Authentication;
+
+
+
+	$('img.home-head').on('click',function(){
+		console.log('gei');
+	});
+
+	}
+]);
+=======
     function($scope, Authentication) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
@@ -75,3 +89,4 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 $('img.home-head').on('hover', function() {
     $('span.hidden').css('display', 'block');
 });
+>>>>>>> origin/master
