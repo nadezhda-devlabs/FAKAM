@@ -10,11 +10,18 @@ var mongoose = require('mongoose'),
  * Session Schema
  */
 var SessionSchema = new Schema({
-	name: {
+	mac_address: {
 		type: String,
-		default: '',
-		required: 'Please fill Session name',
-		trim: true
+	},
+	userId: {
+		type: String,
+	},
+	startTime: {
+		type: Date,
+		default: Date.now
+	},
+	endTime: {
+		type: Date
 	},
 	created: {
 		type: Date,
