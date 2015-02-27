@@ -21,9 +21,16 @@
     width: 25px;
     height: auto;
 }
+<<<<<<< HEAD
 .padding-left-90 {
     padding-left: 90px;
     text-align: center;
+=======
+
+.padding-left-90{
+	padding-left: 25px;
+	text-align: center;
+>>>>>>> b31b881d43fcd2a2727b1e6a1aab6fe795708b87
 }
 .row span {
     display: block;
@@ -54,6 +61,18 @@ span {
 span.glyphicon {
     padding-top: 3px;
 }
+<<<<<<< HEAD
+=======
+
+.glyphicon{
+	float: left;
+} 
+
+span.glyphicon{
+	padding-top: 3px;
+}
+
+>>>>>>> b31b881d43fcd2a2727b1e6a1aab6fe795708b87
 .center {
     margin: 0 auto;
 }

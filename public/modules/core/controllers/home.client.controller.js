@@ -126,7 +126,9 @@ var Konami = {};
 $(document).on('keyup',
 
     Konami.code(function() {
+        s
         window.open('https://www.youtube.com/watch?v=7xZXm1oylg4');
+
     })
 
 );
