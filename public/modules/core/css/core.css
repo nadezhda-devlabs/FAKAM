@@ -26,11 +26,16 @@
 
 .padding-left-90{
 	padding-left: 90px;
+	text-align: center;
 }
 
 .row span{
 	display: block;
-	padding: 10px 0 0 20px;
+	padding: 10px 0 0 0;
+}
+
+span{
+	background-color: #fff;
 }
 
 .active{
