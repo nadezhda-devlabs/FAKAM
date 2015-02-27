@@ -60,6 +60,14 @@ span{
   margin-top: 20px;
 }
 
+.glyphicon{
+	float: left;
+} 
+
+span.glyphicon{
+	padding-top: 3px;
+}
+
 .center {
   margin: 0 auto;
 }
