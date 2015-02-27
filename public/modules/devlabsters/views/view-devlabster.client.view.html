@@ -23,46 +23,42 @@
 		</em>
 	</small>
 </section> -->
+<section data-ng-controller="DevlabstersController" data-ng-init="loadChartData()">
+    <div class="container">
+        <div class="row margin-top-40">
+            <nav class="col-sm-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <img src="img/zhan.jpg" alt="zhan" class="img-circle img-responsive center" />
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active">
+                            <a href="#!/">
+                                <span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a>
+                        </li>
+                    </ul>
+            </nav>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-xs-12">
 
-<div class="container">
-  <div class="row margin-top-40">
-    <nav class="col-sm-2">
-      <div class="row">
-        <div class="col-sm-12">
-          <img src="img/zhan.jpg" alt="zhan" class="img-circle img-responsive center" />
-        </div>
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#!/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a></li>     
-        </ul>   
-      </nav>
-      <div class="col-sm-10">
-        <div class="row">
-          <div class="col-xs-12">
-            
-            <div class="row">
-              <div class="col-md-12">
-                <h1>Жан</h1><p class="lead">Биографийка </p>  
-              </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1>Жан</h1>
+                                <p class="lead">Биографийка </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6 post">
+                                <h2 class="text-center">Активност за последните 24 часа</h1>
+                                    <div id="canvas-holder">
+                                        <canvas id="devlabster_mutual" width="300" height="300" />
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-              <div class="col-md-3 col-sm-6 post">
-                 <a href="#" class="thumbnail"><img src="http://placehold.it/500" alt="" /></a>
-                <h2>Графика 1</h2><p>Графика за едисико</p>
-                <span class="btn btn-default">More</span>
-              </div>
-              <div class="col-md-3 col-sm-6 post">
-                 <a href="#" class="thumbnail"><img src="http://placehold.it/500" alt="" /></a>
-                <h2>Графика 2</h2><p>Графика за едисико.</p>
-                <span class="btn btn-default">More</span>
-              </div>
-              <div class="col-md-3 col-sm-6 post">
-                 <a href="#" class="thumbnail"><img src="http://placehold.it/500" alt="" /></a>
-                <h2>Графика 3</h2><p>Графика за едисико</p>
-                <span class="btn btn-default">More</span>
-              </div>
-            </div>    
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
- </div>
+</section>
