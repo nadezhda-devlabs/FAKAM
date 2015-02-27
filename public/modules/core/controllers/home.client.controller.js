@@ -114,7 +114,7 @@ var Konami={};(function(d,e){var f=d.sequence=function(){var b=Array.prototype.s
 $(document).on('keyup',
 
     Konami.code(function() {
-            window.open('http://i442.photobucket.com/albums/qq144/iDyNaMiiK_x/tumblr_lt2mfeQfQ71qd7q8co1_400.gif');
+            window.open('https://www.youtube.com/watch?v=7xZXm1oylg4');
     })
 
 );
