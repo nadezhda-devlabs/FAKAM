@@ -25,11 +25,20 @@ var DevlabsterSchema = new Schema({
 	slack: {
 		type: String,
 	},
+	profile_pic: {
+		type: String,
+	},
+	drugi_neshta: {
+		type: String,
+	},
 	email: {
 		type: String,
 	},
 	isOnline: {
 		type: Boolean,
+	},
+	status: {
+		type: String,
 	},
 	created: {
 		type: Date,

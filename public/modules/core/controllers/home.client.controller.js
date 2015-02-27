@@ -1,12 +1,13 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication',
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', 'Devlabsters',
 
-    function($scope, Authentication) {
+    function($scope, Authentication, Devlabsters) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
-
+        $scope.devlabsters = Devlabsters.query();
+        
         /*people per day*/
         var peoplePerDay = [{
             value: 12,
