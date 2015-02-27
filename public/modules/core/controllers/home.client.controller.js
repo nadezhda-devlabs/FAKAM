@@ -7,3 +7,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		$scope.authentication = Authentication;
 	}
 ]);
+
+
+$('img.home-head').on('hover',function(){
+	$('span.hidden').css('display','block');
+});
