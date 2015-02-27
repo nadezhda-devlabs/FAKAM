@@ -20,3 +20,13 @@ npm install (трябва да имаме Git в path-a на windows: http://git
 	Конзола две: Проекта стартираме с:
 		cd "папката"
 		grunt
+
+
+Главното view блъскаме в 
+public/modules/core/views/home.client.view.html
+
+Javascript frontend логика в:
+public/modules/core/controllers/home.client.controller.js
+
+Стилове в:
+public/modules/core/css/core.css
