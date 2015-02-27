@@ -1,0 +1,22 @@
+Инструкции за подкарване на проекта (За Windows):
+
+Инсталираме NodeJS от: http://nodejs.org/
+Инсталираме MongoDB от: http://www.mongodb.org/downloads
+
+Изпълняваме:
+npm install -g grunt
+npm install -g grunt-cli
+
+cd папката
+npm install (трябва да имаме Git в path-a на windows: http://git-scm.com/)
+
+Стартиране на проекта:
+	
+	Конзола едно: стартираме mongodb service-a:
+		cd C:\Program Files\MongoDB 2.6 Standard\bin
+		mkdir C:\mongod\data
+		mongod --dbpath C:\mongod\data
+
+	Конзола две: Проекта стартираме с:
+		cd "папката"
+		grunt
