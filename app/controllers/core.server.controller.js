@@ -19,6 +19,52 @@ exports.index = function(req, res) {
 	});
 };
 
+function getOnlineMessage(name) {
+	var messages = [
+		'Хоп хоп, :name тъкмо се появи ФОФИСА',
+		'Добро утрооо :name!',
+		':name вече е ФОФИСА',
+		'Виждам виждам.. :name',
+		'Тихо, :name вече е тук!',
+		'Ето :name се задава!',
+		':name вече е на линия',
+		':name е тук!',
+		':name дойде!',
+		'Здравеееей :name!',
+		'Индивидът :name вече се намира на територията на ФОФИСА!',
+		'Вашият скъп колега :name е вече тук!',
+	];
+
+	return parseMessage(getOneRandom(messages), name);
+}
+
+function getOfflineMessage(name) {
+	var messages = [
+		'Хоп хоп, :name вече не е ФОФИСА',
+		'Довиждане :name!',
+		':name вече не е във ФОФИСА',
+		'Виждам на :name гърба, чаоо',
+		':name не е вече тук!',
+		':name си отива!',
+		':name вече не е на линия',
+		':name не е тук!',
+		':name е offline!',
+		'Чааааааоооо :name!',
+		'Индивидът :name вече не се намира на територията на ФОФИСА!',
+		'Вашият скъп колега :name вече не е тук!',
+	];
+
+	return parseMessage(getOneRandom(messages), name);
+}
+
+function getOneRandom(array) {
+	return array[Math.floor(Math.random() * array.length)];
+}
+
+function parseMessage(message, name) {
+	return message.replace(':name', name);
+}
+
 function callFakamBot(name, online) {
 	var https = require('https');
 
@@ -30,8 +76,8 @@ function callFakamBot(name, online) {
 	};
 
 	var req = https.request(options, function(res) {
-	  console.log('statusCode: ', res.statusCode);
-	  console.log('headers: ', res.headers);
+	  // console.log('statusCode: ', res.statusCode);
+	  // console.log('headers: ', res.headers);
 
 	  res.on('data', function(d) {
 	    process.stdout.write(d);
@@ -44,9 +90,9 @@ function callFakamBot(name, online) {
 
 	var message = 'ko!?..';
 	if (online) {
-		var message = 'Хоп хоп, ' + name + ' тъкмо се появи ФОФИСА';
+		message = getOnlineMessage(name);
 	} else {
-		var message = 'Хоп хоп, ' + name + ' вече не е между нас (ФОФИСА де)';
+		message = getOfflineMessage(name);
 	}
 
 	var request = {
@@ -54,17 +100,22 @@ function callFakamBot(name, online) {
 		'username': 'Fakam-BOT', 
 		'text': message
 	}
+
 	// write data to request body
 	req.write(JSON.stringify(request) + '\n');
 	req.end();
 }
 
-function callFpSense(callback) {
-	var http = require('http');
+var cookieString = '';
 
+function callFpSense(callback) {
+	var https = require('https');
+	
+	process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // Avoids DEPTH_ZERO_SELF_SIGNED_CERT error for self-signed certs
 	var options = {
 	  host: '192.168.10.1',
-	  port: 80,
+	  rejectUnhauthorized: false,
+	  port: 443,
 	  path: '/status_dhcp_leases.php?fakam=samokurvi',
 	  method: 'GET',
 	  headers: {
@@ -73,24 +124,35 @@ function callFpSense(callback) {
 		'Accept-Language':'en-US,en;q=0.8,bg;q=0.6',
 		'Cache-Control':'max-age=0',
 		'Connection':'keep-alive',
-		'Cookie':'PHPSESSID=7fd8bf7fd35289f26da9c7fdbe963e53',
+		'Cookie': cookieString,
 		'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36',
 	  }
 	};
 
 	var response = '';
+	
+	var req = https.request(options, function(res) {
 
-	var req = http.request(options, function(res) {
-	  // console.log('statusCode: ', res.statusCode);
-	  // console.log('headers: ', res.headers);
+	  var hasCookie = res.headers['set-cookie'] && res.headers['set-cookie'][0];
+	  if(hasCookie) {
+	  	//Get first cookie
+	  	cookieString = res.headers['set-cookie'][0].split(';')[0];
+	  }
 
 	  res.on('data', function(d) {
 	    response += d;
 	  });
 	  res.on('end', function(d) {
+	  	//If error code was not 200 discard this request - server returned error
+	  	//Possible cause: session has expired and a new cookie needs to be sent
+	  	if(res.statusCode != 200) {
+	  		console.log('Request fetched an error, possibly new session on the server...');
+	  		return;
+	  	}
+	  	
 	  	//Remove ugly pfsense shit at the end
 	  	response = response.split('<script ')[0];
-	    
+
 	    callback(JSON.parse(response));
 	  });
 	});
@@ -103,6 +165,7 @@ function callFpSense(callback) {
 	req.write('\n');
 	req.end();
 }
+
 /*Example response:
   { ip: '192.168.10.211',
     type: 'static',
@@ -195,32 +258,48 @@ Devlabster.find().exec(function(err, devlabsters) {
  * Parse a row of significance for us (The user is present in our system, log him)
  */
 function handleOneDevlabster(devlabster, mac, isOnline) {
-	// console.log(new Date());
-	// console.log(devlabster);
-	
-	// Devlabster.findById(devlabster).exec(function(err, session) {
-		var status = 'active';
-		if( ! isOnline) {
+	var status = 'active';
+	if( ! isOnline) {
+		//15 min
+		var awayTime = 15 * 60 * 1000;
+
+		var seenSoon = (Date.now() - devlabster.lastSeen) < awayTime;
+
+		//Handle away
+		if(devlabster.lastSeen && seenSoon) {
+			status = 'away';
+		} else {
 			status = 'offline';
 		}
+	}
 
-		//Save if is online currently!
-		devlabster = _.extend(devlabster, {
-			isOnline: isOnline,
-			status: status
-		});
-		devlabster.save(function(err) {
-			console.log('Saved devlabster ' + devlabster.name + 'online: ' + isOnline);
-		});
-	// });
+	console.log(devlabster.name + ' is ' + status);
+
+	//Save status
+	devlabster = _.extend(devlabster, {
+		isOnline: isOnline,
+		status: status
+	});
+
+	var isAway = status == 'away';
+	if(isOnline && ! isAway) {
+		devlabster.lastSeen = Date.now();
+	}
+
+	devlabster.save(function(err) {
+		// console.log('Saved devlabster ' + devlabster.name + ', online: ' + isOnline);
+	});
+
+	if(status == 'away') {
+		//on away status don't change session or send to slackbot yet
+		return;
+	}
 
 	Session.find({'userId': devlabster._id}).sort('-created').exec(function(err, sessions) {
 		if (err) {
 			console.log(err);
 			console.log('error with sessions');
 		} else {
-			console.log(sessions.length);console.log(mac);console.log(isOnline);
-			
 			if(sessions.length) {
 				if( ! isOnline && typeof(sessions[0].endTime) == 'undefined') {
 					//EDIT
@@ -230,7 +309,9 @@ function handleOneDevlabster(devlabster, mac, isOnline) {
 
 					sessions[0].save(function(err) {
 						console.log('This guy just got offline ' + mac);
+						callFakamBot(devlabster.name, false);
 					});
+
 				} else if( isOnline && typeof(sessions[0].endTime) != 'undefined') {
 					//Crete new
 					var session = new Session({
@@ -240,6 +321,7 @@ function handleOneDevlabster(devlabster, mac, isOnline) {
 
 					session.save(function(err) {
 						console.log("Added new session for " + mac);
+						callFakamBot(devlabster.name, true);
 					});
 				}
 			} else {
@@ -252,6 +334,7 @@ function handleOneDevlabster(devlabster, mac, isOnline) {
 
 					session.save(function(err) {
 						console.log("Created first session for " + mac);
+						callFakamBot(devlabster.name, true);
 					});
 				}
 			}
@@ -266,6 +349,7 @@ function handleOneDevlabster(devlabster, mac, isOnline) {
  * 
  */
 function getDataFromPfSense() {
+	console.log(' --- Data --- ');
 	//Example usage:
 	callFpSense(function(response){
 
@@ -301,6 +385,5 @@ function getDataFromPfSense() {
 
 	});
 }
-
 //Disabled for now!
-setInterval(getDataFromPfSense, 10000);
+setInterval(getDataFromPfSense, 5000);

@@ -43,6 +43,9 @@ var DevlabsterSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
+	},
+	lastSeen: {
+		type: Date,
 	}
 });
 
