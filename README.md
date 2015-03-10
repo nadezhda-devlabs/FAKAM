@@ -33,6 +33,11 @@ public/modules/core/controllers/home.client.controller.js
 Стилове в:
 public/modules/core/css/core.css
 
+Файловете в pfSense се намират в
+/usr/local/www/status
+с пълен url:
+https://gate.devlabs/status/status_dhcp_leases_tweaked.php?fakam=samokurvi
+
 
 
 
