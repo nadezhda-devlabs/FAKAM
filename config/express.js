@@ -112,7 +112,7 @@ module.exports = function(db) {
 
 	//Access Control Allow Origin for the devboard - so it can ajax access the data on the server
 	app.use(function(req, res, next) {
-		res.addHeader("Access-Control-Allow-Origin", "http://devboard.za-bavni.com");
+		res.setHeader("Access-Control-Allow-Origin", "http://devboard.za-bavni.com");
 		next();
 	});
 
