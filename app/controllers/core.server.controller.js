@@ -116,7 +116,7 @@ function callFpSense(callback) {
 	  host: '192.168.10.1',
 	  rejectUnhauthorized: false,
 	  port: 443,
-	  path: '/status_dhcp_leases.php?fakam=samokurvi',
+	  path: '/status/status_dhcp_leases_tweaked.php?fakam=samokurvi',
 	  method: 'GET',
 	  headers: {
 		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
