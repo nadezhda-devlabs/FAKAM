@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Кой е ФОФИСА?</title>
+
+        <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+
+        <!-- Google Font -->
+        <link href='http://fonts.googleapis.com/css?family=Poiret+One&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="sass/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="sass/animate.css"  media="screen,projection"/>
+    </head>
+
+    <body class="cbp-spmenu-push grey lighten-4">
+
+        <div id="show-left"></div>
+
+        <div id="search-by-name-btn"></div>
+
+        <form id="search-by-name-form" class="col s12 m4 offset-m4 hidden">
+            <div class="row">
+                <div class="input-field light-input-field col s12">
+                <i class="material-icons prefix">youtube_searched_for</i>
+                <input id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Търси по име</label>
+                </div>
+            </div>
+        </form>
+
+        <div id="scroll-top" title="Scroll to top"></div>
+
+        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left poiret-one-font-bold" id="main-nav">
+            <ul>
+                <li id="profile-item"><a href="#javascript:;"><i class="mdi-action-account-box small right"></i>Профили</a></li>
+                <li id="statistics-item"><a href="#statistics"><i class="mdi-editor-insert-chart small right"></i>Статистика</a></li>
+                <li id="subscribe-item"><a href="#subscribe-panel"><i class="mdi-action-stars small right"></i>Абонирай се</a></li>
+            </ul>
+        </nav>
+
+        <div class="teal accent-4 z-depth-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h3 class="white-text center-align poiret-one-font">Кой е <span id="rotating-word">#ФОФИСА, #ONLINE, #OFFLINE</span>?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <div id="filters" class="button-group">
+                            <button class="waves-effect waves-light poiret-one-font-bold btn tooltipped red" data-position="top" data-delay="20" data-tooltip="5 са offline" data-filter="offline"><i class="mdi-device-signal-wifi-off left"></i>offline</button>
+                            <button class="waves-effect waves-light poiret-one-font-bold btn tooltipped amber darken-1" data-position="top" data-delay="20" data-tooltip="2 са away" data-filter="away"><i class="mdi-device-signal-wifi-off left"></i>away</button>
+                            <button class="waves-effect waves-light poiret-one-font-bold btn tooltipped green accent-3" data-position="top" data-delay="20" data-tooltip="10 са online" data-filter="online"><i class="mdi-device-signal-wifi-4-bar left"></i>online</button>
+                            <button class="waves-effect waves-light poiret-one-font-bold btn tooltipped teal darken-3" data-position="top" data-delay="20" data-tooltip="Всички са 17" data-filter="all"><i class="mdi-action-home left"></i>Всички</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="Container" class="row status-container">
+                    <div class="all offline col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Гого </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light red"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all away col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Жан </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light amber darken-1"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all online col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Веско </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light green accent-3"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all online col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Кало </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light green accent-3"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all away col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Ани </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light amber darken-1"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all online col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Наде </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light green accent-3"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all offline col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Боби </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light red"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all online col s6 m4 l3">
+                        <div class="card single-profile">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="img/ariel.jpg" class="circle responsive-img">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator teal-text text-darken-2 poiret-one-font-bold">Данчо </span>
+                            </div>
+                            <a class="more-info activator btn-floating btn-medium waves-effect waves-light green accent-3"><i class="mdi-navigation-apps"></i></a>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4"><i class="close-icon mdi-navigation-close right"></i></span>
+                                <div class="contact-type-holder"><span class="contact-type-icon skype"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon slack"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon email"></span></div>
+                                <div class="contact-type-holder"><span class="contact-type-icon profile"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:0;"></div>
+            </div>
+        </div>
+        <div id="statistics-panel" class="fixed-panel teal darken-1 z-depth-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="white-text center-align poiret-one-font">Статистика</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grey lighten-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="teal-text text-lighten-2 center-align poiret-one-font">Колко човека е имало вчера фофиса (по часове)?</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <canvas id="lineChart" width="1200" height="400"></canvas>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+        <div class="teal accent-4 z-depth-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="white-text text-lighten-2 center-align poiret-one-font">Най-много хора за семицата</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <canvas id="pieChart" width="1200" height="400"></canvas>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+        <div class="grey lighten-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="teal-text text-lighten-2 center-align poiret-one-font">Топ 5 за последните 7 дни</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <canvas id="barChart" width="1260" height="400"></canvas>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+        <div class="teal accent-4 z-depth-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="white-text text-lighten-2 center-align poiret-one-font">Заглавие</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <canvas id="doughnutChart" width="1200" height="400"></canvas>
+                </div>
+                <div class="row last-row">
+                </div>
+            </div>
+        </div>
+         <div id="subscribe-panel" class="grey lighten-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h4 class="teal-text text-lighten-2 center-align poiret-one-font">Абонирай се за...</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col offset-m5 offset-s4">
+                        <div class="switch">
+                            <label>
+                            <!-- Off -->
+                            <input type="checkbox">
+                            <span class="lever"></span>
+                            Всички
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row subscribe-checkboxes">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col m3 s6">
+                                <p>
+                                    <input type="checkbox" id="ani" />
+                                    <label for="ani">Ани</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="boci" />
+                                    <label for="boci">Боци</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="moni" />
+                                    <label for="moni">Мони</label>
+                                </p>
+                            </div>
+                            <div class="col m3 s6">
+                                <p>
+                                    <input type="checkbox" id="nadi" />
+                                    <label for="nadi">Нади</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="vasko" />
+                                    <label for="vasko">Васко</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="icka" />
+                                    <label for="icka">Ицка</label>
+                                </p>
+                            </div>
+                            <div class="col m3 s6">
+                                <p>
+                                    <input type="checkbox" id="dancho" />
+                                    <label for="dancho">Данчо</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="ivca" />
+                                    <label for="ivca">Ивца</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="zhan" />
+                                    <label for="zhan">Жан</label>
+                                </p>
+                            </div>
+                            <div class="col m3 s6">
+                                <p>
+                                    <input type="checkbox" id="ivo" />
+                                    <label for="ivo">Иво</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="bobi" />
+                                    <label for="bobi">Боби</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="yavka" />
+                                    <label for="yavka">Явка</label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field dark-input-field col s12 m4 offset-m4">
+                        <i class="material-icons prefix">email</i>
+                        <input id="icon_prefix" type="text" class="validate">
+                        <label for="icon_prefix">Въведи своя email</label>
+                        </div>
+                    </div>
+                    <div class="col s12 center-align">
+                        <button class="waves-effect waves-light poiret-one-font-bold btn teal accent-4"><i class="mdi-action-grade left"></i>Абонирай ме</button>
+                    </div>
+                    <!-- <div class="col s12 center-align">
+                        <p class="poiret-one-font-bold">*Ако искаш да се отпишеш обърни се към: <a href="mailto:zhan@devlabs.bg" class="teal-text text-lighten-2">zhan@devlabs.bg</a> <i class="small material-icons">bug_report</i></p>
+                    </div> -->
+                </div>
+                <div class="row last-row">
+                </div>
+            </div>
+        </div>
+        <footer class="teal darken-1">
+            <div class="container">
+                <div class="row last-row">
+                    <div class="col s12">
+                        <p class="copyright teal-text text-darken-4 center-align">FAKAM &copy; Powered with <i class="tiny material-icons">favorite</i> by <a class="teal-text text-darken-4" href="http://devlabs.bg/" target="_blank">DevLabs</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="js/scripts/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/scripts/Chart.js"></script>
+        <script type="text/javascript" src="js/scripts/classie.js"></script>
+        <script type="text/javascript" src="js/bin/materialize.js"></script>
+        <script type="text/javascript" src="js/scripts/morphext.min.js"></script>
+        <script type="text/javascript" src="js/scripts/custom-script.js"></script>
+
+    </body>
+</html>
